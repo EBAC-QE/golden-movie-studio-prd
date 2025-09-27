@@ -9,7 +9,7 @@ const swaggerJsDoc = require('swagger-jsdoc');
 const Joi = require('joi');
 const bcrypt = require('bcrypt');
 
-const HOST = 'https://8i5962r1e8.execute-api.us-east-1.amazonaws.com/prod/';
+const PORT = process.env.PORT || 3000;
 const app = express();
 
 // Middlewares básicos
@@ -228,12 +228,12 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-app.listen( HOST, () => {
+app.listen(PORT, () => {
     const RESET = "\x1b[0m";
     const GREEN = "\x1b[32m";
     const YELLOW = "\x1b[33m"
-    console.log(`${GREEN}**Url Base: https://8i5962r1e8.execute-api.us-east-1.amazonaws.com/prod/${RESET}`);
-    console.log(`${YELLOW}**Documentação : https://8i5962r1e8.execute-api.us-east-1.amazonaws.com/prod/api-docs${RESET}`);
+    console.log(`${GREEN}**Servidor rodando na porta: ${PORT}${RESET}`);
+    console.log(`${YELLOW}**Documentação : http://localhost:${PORT}/api-docs${RESET}`);
 });
 
 /**
